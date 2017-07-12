@@ -1,0 +1,24 @@
+{
+  "name": "moveme",
+  "version": "0.1.0",
+  "description": "Move HTML DOM elements on the fly!",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --progress --colors --watch",
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hmatalonga/moveme.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hmatalonga/moveme/issues"
+  },
+  "homepage": "https://github.com/hmatalonga/moveme#readme",
+  "devDependencies": {
+    "ava": "^0.20.0",
+    "webpack": "^3.2.0"
+  }
+}
