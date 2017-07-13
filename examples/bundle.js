@@ -245,7 +245,7 @@ module.exports = {
   },
 
   /**
-   * Moves the given element to the first position of the parent node
+   * Moves the given element to the first position of the parent node.
    * @param  {Object} element  Given element
    * @param  {Object} options  Additional options for movement
    */
@@ -293,7 +293,7 @@ module.exports = {
   },
 
   /**
-   * Moves the given element to the last position of the parent node
+   * Moves the given element to the last position of the parent node.
    * @param  {Object} element  Given element
    * @param  {Object} options  Additional options for movement
    */
@@ -341,7 +341,7 @@ module.exports = {
   },
 
   /**
-   * Moves the given element to the given position of the parent node
+   * Moves the given element to the given position of the parent node.
    * @param  {Object} element  Given element
    * @param  {Number} position Position where to move the element
    * @param  {Object} options  Additional options for movement
@@ -362,7 +362,7 @@ module.exports = {
     const indexOf = Array.from(children).indexOf(element)
 
     // If the given position is an index out of bounds then stop
-    if (position < 1 && position > total) {
+    if (position < 1 || position > total) {
       return
     }
 
@@ -393,7 +393,11 @@ module.exports = {
         } else if (position === total) {
           element.parentNode.appendChild(element)
         } else {
-          element.parentNode.insertBefore(element, children[position - 1])
+          if ((position - 1) > indexOf) {
+            element.parentNode.insertBefore(element, children[position])
+          } else {
+            element.parentNode.insertBefore(element, children[position - 1])
+          }
         }
         element.style.opacity = 1
         element.style.transition = previousTransition
@@ -405,13 +409,22 @@ module.exports = {
       } else if (position === total) {
         element.parentNode.appendChild(element)
       } else {
-        element.parentNode.insertBefore(element, children[position - 1])
+        if ((position - 1) > indexOf) {
+          element.parentNode.insertBefore(element, children[position])
+        } else {
+          element.parentNode.insertBefore(element, children[position - 1])
+        }
       }
     }
   },
 
   // Helpers -------------------------------------
 
+  /**
+   * Merge user's definied options with default options values.
+   * @param  {Object} options Additional options
+   * @return {Object}         Merged additional options
+   */
   buildOptions(options) {
     for (let key, i = 0, l = this.optionsKeys.length; i < l; i++) {
       key = this.optionsKeys[i]
@@ -420,6 +433,12 @@ module.exports = {
     return options
   },
 
+  /**
+   * Create transition with fade in/out style effect for animation.
+   * @param  {String} transition Existing transition style from element
+   * @param  {Object} options    Options with animation values
+   * @return {String}            Transition style effect
+   */
   buildTransition(transition, options) {
     return transition === '' ?
       'opacity ' + options.duration + ' linear' :
