@@ -85,7 +85,7 @@ Duration of the transition effect, use transition duration values. See more info
 ##### timeout
 
 Type: `number`<br>
-Default: `true`
+Default: `400`
 
 Number of milliseconds that the element is not visible during the movement.
 
