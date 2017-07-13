@@ -1,4 +1,4 @@
-# moveMe [![Build Status](https://travis-ci.org/sindresorhus/path-type.svg?branch=master)](https://travis-ci.org/hmatalonga/moveme)
+# moveMe [![Build Status](https://travis-ci.org/sindresorhus/path-type.svg?branch=master)](https://travis-ci.org/hmatalonga/moveme) [![npm version](https://badge.fury.io/js/moveme.svg)](https://badge.fury.io/js/moveme)
 
 > Move HTML DOM elements on the fly!
 
