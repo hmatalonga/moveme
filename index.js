@@ -17,7 +17,7 @@ module.exports = {
   * Moves the given element to the next position,
   * relative to its current position.
    * @param  {Object} element  Given element
-   * @param  {Object} options  Additional options for movement
+   * @param  {Object} [options]  Additional options for movement
    */
   toNext(element, options) {
     options = options || {}
@@ -66,7 +66,7 @@ module.exports = {
    * Moves the given element to the previous position,
    * relative to its current position.
    * @param  {Object} element  Given element
-   * @param  {Object} options  Additional options for movement
+   * @param  {Object} [options]  Additional options for movement
    */
   toPrevious(element, options) {
     options = options || {}
@@ -114,7 +114,7 @@ module.exports = {
   /**
    * Moves the given element to the first position of the parent node.
    * @param  {Object} element  Given element
-   * @param  {Object} options  Additional options for movement
+   * @param  {Object} [options]  Additional options for movement
    */
   toFirst(element, options) {
     options = options || {}
@@ -162,7 +162,7 @@ module.exports = {
   /**
    * Moves the given element to the last position of the parent node.
    * @param  {Object} element  Given element
-   * @param  {Object} options  Additional options for movement
+   * @param  {Object} [options]  Additional options for movement
    */
   toLast(element, options) {
     options = options || {}
@@ -211,7 +211,7 @@ module.exports = {
    * Moves the given element to the given position of the parent node.
    * @param  {Object} element  Given element
    * @param  {Number} position Position where to move the element
-   * @param  {Object} options  Additional options for movement
+   * @param  {Object} [options]  Additional options for movement
    */
   toPosition(element, position, options) {
     options = options || {}
