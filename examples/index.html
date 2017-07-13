@@ -4,22 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>moveme - Move HTML DOM elements on the fly!</title>
+  <title>moveMe - Move HTML DOM elements on the fly!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.min.css">
 </head>
 <body>
-  <div id="group">
-    <p id="first">First</p>
-    <p id="second">Second</p>
-    <p id="third">Third</p>
-  </div>
-  <select id="selector">
-    <option value="#first" selected>First</option>
-    <option value="#second">Second</option>
-    <option value="#third">Third</option>
-  </select>
-  <hr>
-  <button id="moveup">Move me Up!</button>
-  <button id="movedown">Move me Down!</button>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8 is-offset-2">
+          <h1 class="title">moveMe</h1>
+          <h2 class="subtitle">Move HTML DOM elements on the fly!</h2>
+          <div class="content">
+            <hr>
+            <div class="columns">
+              <div class="column is-4 is-offset-4">
+                <div id="first" class="notification is-info">#1 First</div>
+                <div id="second" class="notification is-success">#2 Second</div>
+                <div id="third" class="notification is-warning">#3 Third</div>
+                <div id="fourth" class="notification is-danger">#4 Fourth</div>
+              </div>
+            </div>
+            <hr>
+            <div class="columns">
+              <div class="column is-3">
+                <div class="field">
+                  <label class="label">Select element</label>
+                  <p class="control">
+                    <span class="select">
+                      <select id="selector">
+                        <option value="#first" selected>#1 First</option>
+                        <option value="#second">#2 Second</option>
+                        <option value="#third">#3 Third</option>
+                        <option value="#fourth">#4 Fourth</option>
+                      </select>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="column is-3">
+                <div class="field">
+                  <label class="label">Animate</label>
+                  <p class="control">
+                    <span class="select">
+                      <select id="animate">
+                        <option value="true" selected>Yes</option>
+                        <option value="false">No</option>
+                      </select>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="field">
+                  <label class="label">Try it! moveMe to:</label>
+                  <p class="control">
+                    <button id="move-back" class="button">Previous</button>
+                    <button id="move-next" class="button">Next</button>
+                    <button id="move-first" class="button">First</button>
+                    <button id="move-last" class="button">Last</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <script src="./bundle.js"></script>
 </body>
 </html>
