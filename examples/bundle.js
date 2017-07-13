@@ -78,13 +78,14 @@ const btnBack = document.querySelector('#move-back')
 const btnNext = document.querySelector('#move-next')
 const btnFirst = document.querySelector('#move-first')
 const btnLast = document.querySelector('#move-last')
+const btnPos = document.querySelector('#move-pos')
 
 // Select inputs
 const selector = document.querySelector('#selector')
 const animate = document.querySelector('#animate')
 
 // Selected element of group
-var selected = document.querySelector('#first')
+var selected = document.querySelector('#el1')
 // Get value for 'animate' option
 var isAnimated = animate.value === 'true'
 
@@ -108,13 +109,19 @@ btnLast.addEventListener('click', () => {
   __WEBPACK_IMPORTED_MODULE_0__index___default.a.toLast(selected, { animate: isAnimated })
 })
 
+// On click move element to specified position
+btnPos.addEventListener('click', () => {
+  const position = document.querySelector('#position').value
+  __WEBPACK_IMPORTED_MODULE_0__index___default.a.toPosition(selected, position, { animate: isAnimated })
+})
+
 // Update selected element of group
-selector.addEventListener('change', (e) => {
+selector.addEventListener('change', e => {
   selected = document.querySelector(e.target.value)
 })
 
 // Update animate option
-animate.addEventListener('change', (e) => {
+animate.addEventListener('change', e => {
   isAnimated = e.target.value === 'true'
 })
 
@@ -139,6 +146,12 @@ module.exports = {
     timeout: 400
   },
 
+  /**
+  * Moves the given element to the next position,
+  * relative to its current position.
+   * @param  {Object} element  Given element
+   * @param  {Object} options  Additional options for movement
+   */
   toNext(element, options) {
     options = options || {}
     options = this.buildOptions(options)
@@ -182,6 +195,12 @@ module.exports = {
     }
   },
 
+  /**
+   * Moves the given element to the previous position,
+   * relative to its current position.
+   * @param  {Object} element  Given element
+   * @param  {Object} options  Additional options for movement
+   */
   toPrevious(element, options) {
     options = options || {}
     options = this.buildOptions(options)
@@ -225,6 +244,11 @@ module.exports = {
     }
   },
 
+  /**
+   * Moves the given element to the first position of the parent node
+   * @param  {Object} element  Given element
+   * @param  {Object} options  Additional options for movement
+   */
   toFirst(element, options) {
     options = options || {}
     options = this.buildOptions(options)
@@ -268,6 +292,11 @@ module.exports = {
     }
   },
 
+  /**
+   * Moves the given element to the last position of the parent node
+   * @param  {Object} element  Given element
+   * @param  {Object} options  Additional options for movement
+   */
   toLast(element, options) {
     options = options || {}
     options = this.buildOptions(options)
@@ -311,14 +340,83 @@ module.exports = {
     }
   },
 
-  // Helpers
+  /**
+   * Moves the given element to the given position of the parent node
+   * @param  {Object} element  Given element
+   * @param  {Number} position Position where to move the element
+   * @param  {Object} options  Additional options for movement
+   */
+  toPosition(element, position, options) {
+    options = options || {}
+    options = this.buildOptions(options)
 
-  buildOptions (options) {
+    position = parseInt(position)
+
+    // If element is not a object or has less than two children then stop
+    if (!this.isGroup(element)) {
+      return
+    }
+
+    const children = element.parentNode.children
+    const total = children.length
+    const indexOf = Array.from(children).indexOf(element)
+
+    // If the given position is an index out of bounds then stop
+    if (position < 1 && position > total) {
+      return
+    }
+
+    // If the element is already at the specified position then stop
+    if (indexOf === (position - 1)) {
+      return
+    }
+
+    // If animate is set then prepare transition style
+    if (options.animate === true) {
+      // Save any previous user's defined transition style
+      const previousTransition = element.style.transition
+
+      // Add new transition for fade in/out effect
+      element.style.transition = this.buildTransition(
+        element.style.transition,
+        options
+      )
+
+      // Fade out element
+      element.style.opacity = 0
+
+      // Move element and fade in
+      setTimeout(() => {
+        // Check if which position is the best insertion
+        if (position === 1) {
+          element.parentNode.insertBefore(element, children[0])
+        } else if (position === total) {
+          element.parentNode.appendChild(element)
+        } else {
+          element.parentNode.insertBefore(element, children[position - 1])
+        }
+        element.style.opacity = 1
+        element.style.transition = previousTransition
+      }, options.timeout)
+    } else {
+      // Check if which position is the best insertion, without effect
+      if (position === 1) {
+        element.parentNode.insertBefore(element, children[0])
+      } else if (position === total) {
+        element.parentNode.appendChild(element)
+      } else {
+        element.parentNode.insertBefore(element, children[position - 1])
+      }
+    }
+  },
+
+  // Helpers -------------------------------------
+
+  buildOptions(options) {
     for (let key, i = 0, l = this.optionsKeys.length; i < l; i++) {
       key = this.optionsKeys[i]
       options[key] = (key in options) ? options[key] : this.defaultOptions[key]
     }
-    console.log(options)
     return options
   },
 
@@ -328,10 +426,22 @@ module.exports = {
       transition + ', opacity ' + options.duration + ' linear'
   },
 
+  /**
+   * Check if the given element has necessary conditions
+   * to move within the group. Element must be of type {Object}
+   * and parent node must have more than one child nodes.
+   * @param  {Object}  element Given element
+   * @return {Boolean}         Either if has all requirements or not
+   */
   hasRequirements(element) {
     return element instanceof Object ? element.parentNode.children.length : 0
   },
 
+  /**
+   * Check the given element is a group, contains more than one child node.
+   * @param  {Object}  element Given element
+   * @return {Boolean}         Either if is a group element or not
+   */
   isGroup(element) {
     return this.hasRequirements(element) > 1
   }
