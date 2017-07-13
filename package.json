@@ -4,7 +4,8 @@
   "description": "Move HTML DOM elements on the fly!",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --progress --colors --watch",
+    "dev": "webpack --progress --colors",
+    "watch": "webpack --progress --colors --watch",
     "test": "ava"
   },
   "repository": {
