@@ -9,37 +9,37 @@ const btnPos = document.querySelector('#move-pos')
 
 // Select inputs
 const selector = document.querySelector('#selector')
-const animate = document.querySelector('#animate')
+const animator = document.querySelector('#animator')
 
 // Selected element of group
 var selected = document.querySelector('#el1')
-// Get value for 'animate' option
-var isAnimated = animate.value === 'true'
+// Get value for 'animator' option
+var currentAnimation = animator.value
 
 // On click move element to next position
 btnNext.addEventListener('click', () => {
-  moveMe.toNext(selected, { animate: isAnimated })
+  moveMe.toNext(selected, { animation: currentAnimation })
 })
 
 // On click move element back one position
 btnBack.addEventListener('click', () => {
-  moveMe.toPrevious(selected, { animate: isAnimated })
+  moveMe.toPrevious(selected, { animation: currentAnimation })
 })
 
 // On click move element to first position
 btnFirst.addEventListener('click', () => {
-  moveMe.toFirst(selected, { animate: isAnimated })
+  moveMe.toFirst(selected, { animation: currentAnimation })
 })
 
 // On click move element to last position
 btnLast.addEventListener('click', () => {
-  moveMe.toLast(selected, { animate: isAnimated })
+  moveMe.toLast(selected, { animation: currentAnimation })
 })
 
 // On click move element to specified position
 btnPos.addEventListener('click', () => {
   const position = document.querySelector('#position').value
-  moveMe.toPosition(selected, position, { animate: isAnimated })
+  moveMe.toPosition(selected, position, { animation: currentAnimation })
 })
 
 // Update selected element of group
@@ -48,6 +48,6 @@ selector.addEventListener('change', e => {
 })
 
 // Update animate option
-animate.addEventListener('change', e => {
-  isAnimated = e.target.value === 'true'
+animator.addEventListener('change', e => {
+  currentAnimation = e.target.value
 })

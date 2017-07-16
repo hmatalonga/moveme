@@ -6,20 +6,36 @@
   "scripts": {
     "dev": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
-    "test": "ava"
+    "test": "xo && ava"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hmatalonga/moveme.git"
   },
-  "author": "Hugo Matalonga",
+  "keywords": [
+    "dom",
+    "sort",
+    "move",
+    "element",
+    "elements",
+    "utility"
+  ],
+  "author": "Hugo Matalonga <dev@hmatalonga.com> (http://hmatalonga.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hmatalonga/moveme/issues"
   },
   "homepage": "https://github.com/hmatalonga/moveme#readme",
   "devDependencies": {
-    "ava": "^0.20.0",
-    "webpack": "^3.2.0"
+    "ava": "^0.21.0",
+    "webpack": "^3.2.0",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "semicolon": false,
+    "ignores": [
+      "examples/**",
+      "webpack.config.js"
+    ]
   }
 }

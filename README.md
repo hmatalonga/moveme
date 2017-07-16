@@ -32,9 +32,9 @@ moveMe.toPosition(someElement, 3);
 
 // You can also set additional options
 moveMe.toNext(someElement, {
-  animate: true,
-  duration: '1s',
-  timeout: 800
+  duration: '.6s',
+  timingFunction: 'linear',
+  delay: '1s'
 });
 ```
 
@@ -81,28 +81,34 @@ Position where to move the element.
 
 Type: `object`
 
-##### animate
+##### animation
 
-Type: `boolean`<br>
-Default: `true`
+Type: `string`<br>
+Values: `fadeInOut` `none`<br>
+Default: `fadeInOut`
 
-If `true`, animates the movement of the element with a fade in/out effect.
+Animation name for the element's effect movement. It makes use of CSS transitions.
 
 ##### duration
 
 Type: `string`<br>
-Default: `.2s`
+Default: `.4s`
 
-Duration of the transition effect, use transition duration values. See more information [here](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration).
+Duration of the transition effect. See [transition duration docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration).
 
-##### timeout
+##### timingFunction
 
-Type: `number`<br>
-Default: `400`
+Type: `string`<br>
+Default: `ease-in-out`
 
-Number of milliseconds that the element is not visible during the movement.
+Timing function name of the transition effect. See [transition timing function docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function).
 
+##### delay
 
+Type: `string`<br>
+Default: `0s`
+
+Delay of the transition effect. See [transition delay docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay).
 
 
 
