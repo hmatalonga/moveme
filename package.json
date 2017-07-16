@@ -1,6 +1,6 @@
 {
   "name": "moveme",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Move HTML DOM elements on the fly!",
   "main": "index.js",
   "scripts": {
