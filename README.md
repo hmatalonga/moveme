@@ -1,17 +1,19 @@
-# moveMe [![Build Status](https://travis-ci.org/sindresorhus/path-type.svg?branch=master)](https://travis-ci.org/hmatalonga/moveme) [![npm version](https://badge.fury.io/js/moveme.svg)](https://badge.fury.io/js/moveme)
+# moveMe
+
+[![Build Status](https://travis-ci.org/sindresorhus/path-type.svg?branch=master)](https://travis-ci.org/hmatalonga/moveme) [![npm version](https://badge.fury.io/js/moveme.svg)](https://badge.fury.io/js/moveme)
 
 > Move HTML DOM elements on the fly!
 
 ## Install
 
-```
-$ npm install --save moveme
+```bash
+$ npm install --save moveme # or yarn add -D moveme
 ```
 
 ## Usage
 
 ```js
-const moveMe = require('moveme');
+import * as moveMe from 'moveme';
 
 const someElement = document.querySelector('#someId');
 
@@ -109,9 +111,6 @@ Type: `string`<br>
 Default: `0s`
 
 Delay of the transition effect. See [transition delay docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay).
-
-
-
 
 ## License
 
