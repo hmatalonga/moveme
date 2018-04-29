@@ -28,7 +28,8 @@
   "homepage": "https://github.com/hmatalonga/moveme#readme",
   "devDependencies": {
     "ava": "^0.25.0",
+    "jsdom": "^11.9.0",
     "webpack": "^4.6.0",
-    "jsdom": "^11.9.0"
+    "webpack-cli": "^2.0.15"
   }
 }
